@@ -21,6 +21,26 @@ public class Tweet {
     public long id;
     public String DISPLAY_URL;
 
+    public String getBody() {
+        return body;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getDISPLAY_URL() {
+        return DISPLAY_URL;
+    }
+
     // Empty constructor needed by the Parceler library
     public Tweet(){}
 
