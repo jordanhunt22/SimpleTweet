@@ -30,6 +30,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
+        android:backgroundTint="@color/twitter_blue"
         android:text="@string/tweet" />
 
     <TextView
@@ -40,6 +41,7 @@
         android:layout_marginTop="18dp"
         android:layout_marginEnd="12dp"
         android:layout_toStartOf="@+id/btnTweet"
-        android:text="140"
+        android:text="280"
+        android:textColor="@android:color/darker_gray"
         android:textSize="18sp" />
 </RelativeLayout>

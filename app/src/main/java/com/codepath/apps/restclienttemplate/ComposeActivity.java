@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codepath.apps.restclienttemplate.databinding.ActivityComposeBinding;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
@@ -24,7 +25,7 @@ import okhttp3.Headers;
 public class ComposeActivity extends AppCompatActivity {
 
     public static final String TAG = "ComposeActivity";
-    public static final int MAX_TWEET_LENGTH = 140;
+    public static final int MAX_TWEET_LENGTH = 280;
 
     EditText etCompose;
     Button btnTweet;
@@ -35,16 +36,20 @@ public class ComposeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_compose);
+
+        // Implementing ViewBinding
+        ActivityComposeBinding binding = ActivityComposeBinding.inflate(getLayoutInflater());
+        View main = binding.getRoot();
+        setContentView(main);
 
         client = TwitterApp.getRestClient(this);
 
-        etCompose = findViewById(R.id.etCompose);
-        btnTweet = findViewById(R.id.btnTweet);
-        tvCount = findViewById(R.id.tvCount);
+        etCompose = binding.etCompose;
+        btnTweet = binding.btnTweet;
+        tvCount = binding.tvCount;
 
         // Sets initial count of TextView
-        tvCount.setText("140");
+        tvCount.setText("280");
 
         // Refreshes count every time a letter is typed
         etCompose.addTextChangedListener(new TextWatcher() {
@@ -61,7 +66,7 @@ public class ComposeActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 // Fires right after the text has changed
-                int charCount = 140 - s.length();
+                int charCount = 280 - s.length();
                 tvCount.setText(Integer.toString(charCount));
             }
         });

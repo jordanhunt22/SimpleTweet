@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.R;
+import com.codepath.apps.restclienttemplate.TimeFormatter.TimeFormatter;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.util.List;
@@ -71,6 +72,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvBody;
         TextView tvName;
         TextView tvScreenName;
+        TextView tvTime;
         ImageView ivMedia;
 
         public ViewHolder(@NonNull View itemView) {
@@ -80,12 +82,15 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvName = itemView.findViewById(R.id.tvName);
             ivMedia = itemView.findViewById(R.id.ivMedia);
+            tvTime = itemView.findViewById(R.id.tvTime);
         }
 
         public void bind(Tweet tweet) {
+            // Sets radius for rounded corners of profile image
             radius = 30;
             tvBody.setText(tweet.body);
             tvScreenName.setText("@" + tweet.user.screenName);
+            tvTime.setText(TimeFormatter.getTimeDifference(tweet.createdAt));
             tvName.setText(tweet.user.name);
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
             Glide.with(context).load(tweet.user.profileImageUrl).transform(new RoundedCorners(radius)).into(ivProfileImage);
