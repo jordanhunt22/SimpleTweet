@@ -16,6 +16,9 @@ import com.codepath.oauth.OAuthLoginActionBarActivity;
 public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 
 	SampleModelDao sampleModelDao;
+
+	// Records the number of failed login attempts
+	public static int numTries;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,9 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 				sampleModelDao.insertModel(sampleModel);
 			}
 		});
+
+		// sets the initial number of failed login attempts to zero
+		numTries = 0;
 	}
 
 
@@ -56,7 +62,10 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 	// i.e Display an error dialog or toast
 	@Override
 	public void onLoginFailure(Exception e) {
-		Toast.makeText(LoginActivity.this, "Your login failed. Retry your username and password.", Toast.LENGTH_SHORT).show();;
+		Toast.makeText(LoginActivity.this, "Your login failed. Retry your username and password.", Toast.LENGTH_SHORT).show();
+
+		// Increments number of failed login tries
+		numTries++;
 		e.printStackTrace();
 	}
 
@@ -64,6 +73,10 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 	// Uses the client to initiate OAuth authorization
 	// This should be tied to a button used to login
 	public void loginToRest(View view) {
+		if (numTries >= 3){
+			Toast.makeText(LoginActivity.this, "Your login has failed 3 times. Try again later.", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		getClient().connect();
 	}
 

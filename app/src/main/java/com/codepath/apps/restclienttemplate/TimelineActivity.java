@@ -130,7 +130,7 @@ public class TimelineActivity extends AppCompatActivity {
 
                     // Append the new data objects to the existing set of items inside the array of items
                     // Notify the adapter of the new items made with `notifyItemRangeInserted()`
-                    List<Tweet> tweets = Tweet.fromJsonArray(jsonArray);
+                    tweets = Tweet.fromJsonArray(jsonArray);
                     adapter.addAll(tweets);
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -109,7 +109,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
 
         }
-        // Shows MovieDetails Activity when user clicks on a row
+        // Shows TweetDetail Activity when user clicks on a row
         @Override
         public void onClick(View v) {
             // Gets item position
