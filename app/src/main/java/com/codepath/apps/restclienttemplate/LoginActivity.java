@@ -18,7 +18,7 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 	SampleModelDao sampleModelDao;
 
 	// Records the number of failed login attempts
-	public static int numTries;
+	private int numTries;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
